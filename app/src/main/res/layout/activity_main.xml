@@ -7,13 +7,115 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <SeekBar
+        android:id="@+id/sb_v_green"
+        android:layout_width="350dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="22dp"
+        android:max="255"
+        android:progress="255"
+        android:progressTint="#00BCD4"
+        android:thumbTint="#00BCD4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_v_green_label" />
+
+    <SeekBar
+        android:id="@+id/sb_v_red"
+        android:layout_width="350dp"
+        android:layout_height="25dp"
+        android:max="255"
+        android:progress="255"
+        android:progressTint="#00BCD4"
+        android:thumbTint="#00BCD4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_red_label" />
+
     <TextView
+        android:id="@+id/tv_v_blue_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="42dp"
+        android:text="Blue:"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_v_hr_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_green_label" />
+
+    <TextView
+        android:id="@+id/tv_v_green_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="35dp"
+        android:text="Green:"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_v_blue_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_red_label" />
+
+    <TextView
+        android:id="@+id/tv_v_red_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="62dp"
+        android:layout_marginBottom="35dp"
+        android:text="Red:"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_v_green_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <SeekBar
+        android:id="@+id/sb_v_blue"
+        android:layout_width="350dp"
+        android:layout_height="25dp"
+        android:max="255"
+        android:progress="255"
+        android:progressTint="#00BCD4"
+        android:thumbTint="#00BCD4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_blue_label" />
+
+    <Button
+        android:id="@+id/btn_v_save"
+        android:layout_width="350dp"
+        android:layout_height="48dp"
+        android:insetTop="4dp"
+        android:insetBottom="4dp"
+        android:text="SAVE COLOR"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/lv_v_colorlist"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_v_hr_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:text="Hex Representation:"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/lv_v_colorlist"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_blue_label" />
+
+    <ListView
+        android:id="@+id/lv_v_colorlist"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_hr_label" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
