@@ -1,6 +1,7 @@
 package com.example.homework2_rbg_draketermors;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,7 @@ public class ColorListAdapter extends BaseAdapter
     @Override
     public View getView(int i, View view, ViewGroup viewGroup)
     {
+
         if (view == null)
         {
             LayoutInflater mInflator = (LayoutInflater) context.getSystemService(MainActivity.LAYOUT_INFLATER_SERVICE);
@@ -53,8 +55,9 @@ public class ColorListAdapter extends BaseAdapter
         ColorInfo col = listOfColor.get(i);
 
         //set gui
-        rgblist.setText("Red: " + col.getStoreRed() + "Green: " + col.getStoreGreen() + "Blue: " + col.getStoreBlue());
+        rgblist.setText("Red: " + col.getStoreRed() + "  Green: " + col.getStoreGreen() + "  Blue: " + col.getStoreBlue());
         hexlist.setText(col.getStoreHex());
+        view.setBackgroundColor(Color.parseColor("#" + col.getStoreHex()));
 
         return view;
     }

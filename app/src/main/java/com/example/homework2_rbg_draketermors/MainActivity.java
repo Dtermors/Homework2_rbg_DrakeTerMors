@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SeekBar;
@@ -33,8 +34,11 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<ColorInfo> listOfColors;
     int red=255,green=255,blue=255;
     String Hred;
+    String redExtra;
     String Hgreen;
+    String greenExtra;
     String Hblue;
+    String blueExtra;
     //String hex = String.format("%02x%02x%02x", red, green, blue);
     String hex;
     ColorListAdapter adapter;
@@ -61,10 +65,11 @@ public class MainActivity extends AppCompatActivity {
         tv_j_blue.setText("Blue:    " + blue);
         main_2.setBackgroundColor(Color.rgb(red,green,blue));
         //translating RGB to hex
-        Hred = Integer.toHexString(sb_j_red.getProgress());
-        Hgreen = Integer.toHexString(sb_j_green.getProgress());
-        Hblue = Integer.toHexString(sb_j_blue.getProgress());
+        Hred = Integer.toString(sb_j_red.getProgress(), 16);
+        Hgreen = Integer.toString(sb_j_green.getProgress(), 16);
+        Hblue = Integer.toString(sb_j_blue.getProgress(), 16);
         hex =  Hred + Hgreen + Hblue;
+
         tv_j_hex.setText("Hex Representation:   " + hex.toUpperCase());
 
         //code for Seek bars and respective activity
@@ -72,11 +77,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 red = sb_j_red.getProgress();
+                green = sb_j_green.getProgress();
+                blue = sb_j_blue.getProgress();
                 tv_j_red.setText("Red:     " + red);
                 main_2.setBackgroundColor(Color.rgb(red,green,blue));
-                Hred = Integer.toHexString(sb_j_red.getProgress());
-                Hgreen = Integer.toHexString(sb_j_green.getProgress());
-                Hblue = Integer.toHexString(sb_j_blue.getProgress());
+                if (red < 16){
+                    Hred = "0" + Integer.toString(sb_j_red.getProgress(), 16);
+                }else {Hred = Integer.toString(sb_j_red.getProgress(), 16);}
+                if (green < 16){
+                    Hgreen = "0" + Integer.toString(sb_j_green.getProgress(), 16);
+                } else {Hgreen = Integer.toString(sb_j_green.getProgress(), 16);}
+               if (blue < 16){
+                   Hblue = "0" + Integer.toString(sb_j_blue.getProgress(), 16);
+               }else {Hblue = Integer.toString(sb_j_blue.getProgress(), 16);}
+
                 hex =  Hred + Hgreen + Hblue;
                 tv_j_hex.setText("Hex Representation:   " + hex.toUpperCase());
                 if (red < 150 && green < 150 &&blue < 150)
@@ -110,12 +124,20 @@ public class MainActivity extends AppCompatActivity {
         sb_j_green.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                red = sb_j_red.getProgress();
                 green = sb_j_green.getProgress();
+                blue = sb_j_blue.getProgress();
                 tv_j_green.setText("Green: " + green);
                 main_2.setBackgroundColor(Color.rgb(red,green,blue));
-                Hred = Integer.toHexString(sb_j_red.getProgress());
-                Hgreen = Integer.toHexString(sb_j_green.getProgress());
-                Hblue = Integer.toHexString(sb_j_blue.getProgress());
+                if (red < 16){
+                    Hred = "0" + Integer.toString(sb_j_red.getProgress(), 16);
+                }else {Hred = Integer.toString(sb_j_red.getProgress(), 16);}
+                if (green < 16){
+                    Hgreen = "0" + Integer.toString(sb_j_green.getProgress(), 16);
+                } else {Hgreen = Integer.toString(sb_j_green.getProgress(), 16);}
+                if (blue < 16){
+                    Hblue = "0" + Integer.toString(sb_j_blue.getProgress(), 16);
+                }else {Hblue = Integer.toString(sb_j_blue.getProgress(), 16);}
                 hex =  Hred + Hgreen + Hblue;
                 tv_j_hex.setText("Hex Representation:   " + hex.toUpperCase());
                 if (red < 150 && green < 150 &&blue < 150)
@@ -149,12 +171,20 @@ public class MainActivity extends AppCompatActivity {
         sb_j_blue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                red = sb_j_red.getProgress();
+                green = sb_j_green.getProgress();
                 blue = sb_j_blue.getProgress();
                 tv_j_blue.setText("Blue:    " + blue);
                 main_2.setBackgroundColor(Color.rgb(red,green,blue));
-                Hred = Integer.toHexString(sb_j_red.getProgress());
-                Hgreen = Integer.toHexString(sb_j_green.getProgress());
-                Hblue = Integer.toHexString(sb_j_blue.getProgress());
+                if (red < 16){
+                    Hred = "0" + Integer.toString(sb_j_red.getProgress(), 16);
+                }else {Hred = Integer.toString(sb_j_red.getProgress(), 16);}
+                if (green < 16){
+                    Hgreen = "0" + Integer.toString(sb_j_green.getProgress(), 16);
+                } else {Hgreen = Integer.toString(sb_j_green.getProgress(), 16);}
+                if (blue < 16){
+                    Hblue = "0" + Integer.toString(sb_j_blue.getProgress(), 16);
+                }else {Hblue = Integer.toString(sb_j_blue.getProgress(), 16);}
                 hex =  Hred + Hgreen + Hblue;
                 tv_j_hex.setText("Hex Representation:   " + hex.toUpperCase());
                 if (red < 150 && green < 150 &&blue < 150)
@@ -188,7 +218,20 @@ public class MainActivity extends AppCompatActivity {
         //Setting up array
         listOfColors = new ArrayList<ColorInfo>();
         fillListView();
+        lv_j_colorlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String s = lv_j_colorlist.getItemAtPosition(i).toString();
+
+                sb_j_red.setProgress(i);
+                sb_j_green.setProgress(i);
+                sb_j_blue.setProgress(i);
+            }
+
+        });
     }
+    // code for selecting list items
+
     //code for save button
     private void saveColorButtonListener(){
         btn_j_save.setOnClickListener(new View.OnClickListener() {
